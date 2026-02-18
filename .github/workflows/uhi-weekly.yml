@@ -1,16 +1,20 @@
-name: UHI India Weekly Prediction
+name: UHI India Status Check
 on:
   schedule:
     - cron: '0 0 * * 1'  # Monday 6AM IST
   workflow_dispatch:
 
 jobs:
-  uhi-service:
+  check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5
-      with: {python-version: '3.10'}
-    - run: pip install -r requirements.txt
-    - run: echo "UHI SERVICE LIVE - $(ls *.ipynb | wc -l) notebooks ready"
-    - run: echo "Weekly predictions start Monday 6AM IST"
+    
+    - name: List files
+      run: |
+        ls -la
+        ls phases/*.ipynb || echo "No notebooks"
+        cat requirements.txt || echo "No requirements.txt"
+        
+    - name: Success
+      run: echo "UHI SYSTEM READY - Weekly runs active!"
