@@ -1,0 +1,6 @@
+1. earthengine-api
+2. geemap
+3. pandas
+4. numpy
+5. scikit-learn
+6. joblib
